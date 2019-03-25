@@ -1,18 +1,18 @@
 package Model;
 
+import java.util.Objects;
+
 public class Farmacia {
     private String cnpj;
     private String razaoSocial;
     private String endereco;
     private String telefone;
-    private int codigo;
 
-    public Farmacia(String cnpj, String razaoSocial, String endereco, String telefone, int codigo) {
+    public Farmacia(String cnpj, String razaoSocial, String endereco, String telefone) {
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.endereco = endereco;
         this.telefone = telefone;
-        this.codigo = codigo;
     }
 
     public String getCnpj() {
@@ -47,11 +47,26 @@ public class Farmacia {
         this.telefone = telefone;
     }
 
-    public int getCodigo() {
-        return codigo;
+    @Override
+    public String toString() {
+        return "Farmacia{" +
+                "cnpj='" + cnpj + '\'' +
+                ", razaoSocial='" + razaoSocial + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", telefone='" + telefone + '\'' +
+                '}';
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Farmacia farmacia = (Farmacia) o;
+        return cnpj.equals(farmacia.cnpj);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cnpj);
     }
 }

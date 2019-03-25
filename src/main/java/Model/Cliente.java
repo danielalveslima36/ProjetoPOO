@@ -1,6 +1,8 @@
 package Model;
 
+
 import java.time.LocalDate;
+import java.util.Objects;
 
 public class Cliente {
     private String nome;
@@ -8,7 +10,6 @@ public class Cliente {
     private String endereço;
     private String sexo;
     private LocalDate nacimento;
-
 
     public Cliente(String nome, String cpf, String endereço, String sexo, LocalDate nacimento) {
         this.nome = nome;
@@ -58,4 +59,27 @@ public class Cliente {
         this.nacimento = nacimento;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", endereço='" + endereço + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", nacimento=" + nacimento +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Cliente cliente = (Cliente) o;
+        return cpf.equals(cliente.cpf);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(cpf);
+    }
 }
