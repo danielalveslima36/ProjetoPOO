@@ -6,11 +6,13 @@ public class Venda {
     private LocalDate data;
     private float total;
     private float hora;
+    private String tipo;
 
     public Venda(LocalDate data, float total, float hora) {
         this.data = data;
         this.total = total;
         this.hora = hora;
+        this.tipo = tipo;
     }
 
     public LocalDate getData() {
@@ -35,5 +37,13 @@ public class Venda {
 
     public void setHora(float hora) {
         this.hora = hora;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
