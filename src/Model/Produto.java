@@ -10,6 +10,14 @@ public class Produto {
     private float precoUnitario;
     private String fabricante;
 
+    public Produto(String decricao, LocalDate validade, String codigoDeBarras, float precoUnitario, String fabricante) {
+        this.decricao = decricao;
+        this.validade = validade;
+        this.codigoDeBarras = codigoDeBarras;
+        this.precoUnitario = precoUnitario;
+        this.fabricante = fabricante;
+    }
+
     public String getDecricao() {
         return decricao;
     }
