@@ -8,13 +8,15 @@ public class Funcionario {
     private float salario;
     private String telefone;
     private String endereco;
+    private String senha;
 
-    public Funcionario(String cpf, String matricula, float salario, String telefone, String endereco) {
+    public Funcionario(String cpf, String matricula, float salario, String telefone, String endereco, String senha) {
         this.cpf = cpf;
         this.matricula = matricula;
         this.salario = salario;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.senha = senha;
     }
 
     public String getCpf() {
@@ -57,15 +59,12 @@ public class Funcionario {
         this.endereco = endereco;
     }
 
-    @Override
-    public String toString() {
-        return "Funcionario{" +
-                "cpf='" + cpf + '\'' +
-                ", matricula='" + matricula + '\'' +
-                ", salario=" + salario +
-                ", telefone='" + telefone + '\'' +
-                ", endereco='" + endereco + '\'' +
-                '}';
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     @Override
@@ -73,11 +72,16 @@ public class Funcionario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Funcionario that = (Funcionario) o;
-        return matricula.equals(that.matricula);
+        return Float.compare(that.salario, salario) == 0 &&
+                Objects.equals(cpf, that.cpf) &&
+                Objects.equals(matricula, that.matricula) &&
+                Objects.equals(telefone, that.telefone) &&
+                Objects.equals(endereco, that.endereco) &&
+                Objects.equals(senha, that.senha);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(matricula);
+        return Objects.hash(cpf, matricula, salario, telefone, endereco, senha);
     }
 }
