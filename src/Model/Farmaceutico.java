@@ -1,12 +1,13 @@
 package Model;
 
 import java.util.Objects;
+import Enum.Sessao;
 
-public class Farmacêutico extends Funcionario {
+public class Farmaceutico extends Funcionario {
     private String numeroCRF;
 
-    public Farmacêutico(String cpf, String matricula, float salario, String telefone, String endereco, String numeroCRF) {
-        super(cpf, matricula, salario, telefone, endereco);
+    public Farmaceutico(String cpf, String matricula, String senha, float salario, Sessao sessao, String telefone, String endereco, String numeroCRF) {
+        super(cpf, matricula, senha, salario, sessao, telefone, endereco);
         this.numeroCRF = numeroCRF;
     }
 
@@ -20,7 +21,7 @@ public class Farmacêutico extends Funcionario {
 
     @Override
     public String toString() {
-        return "Farmacêutico{" +
+        return "Farmaceutico{" +
                 "numeroCRF='" + numeroCRF + '\'' +
                 '}';
     }
@@ -30,8 +31,8 @@ public class Farmacêutico extends Funcionario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
-        Farmacêutico that = (Farmacêutico) o;
-        return numeroCRF.equals(that.numeroCRF);
+        Farmaceutico that = (Farmaceutico) o;
+        return Objects.equals(numeroCRF, that.numeroCRF);
     }
 
     @Override

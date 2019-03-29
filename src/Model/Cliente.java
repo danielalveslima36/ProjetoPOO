@@ -7,14 +7,14 @@ import java.util.Objects;
 public class Cliente {
     private String nome;
     private String cpf;
-    private String endereço;
+    private String endereco;
     private String sexo;
     private LocalDate nacimento;
 
-    public Cliente(String nome, String cpf, String endereço, String sexo, LocalDate nacimento) {
+    public Cliente(String nome, String cpf, String endereco, String sexo, LocalDate nacimento) {
         this.nome = nome;
         this.cpf = cpf;
-        this.endereço = endereço;
+        this.endereco = endereco;
         this.sexo = sexo;
         this.nacimento = nacimento;
     }
@@ -35,12 +35,12 @@ public class Cliente {
         this.cpf = cpf;
     }
 
-    public String getEndereço() {
-        return endereço;
+    public String getEndereco() {
+        return endereco;
     }
 
     public void setEndereço(String endereço) {
-        this.endereço = endereço;
+        this.endereco = endereço;
     }
 
     public String getSexo() {
@@ -64,7 +64,7 @@ public class Cliente {
         return "Cliente{" +
                 "nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", endereço='" + endereço + '\'' +
+                ", endereço='" + endereco + '\'' +
                 ", sexo='" + sexo + '\'' +
                 ", nacimento=" + nacimento +
                 '}';
