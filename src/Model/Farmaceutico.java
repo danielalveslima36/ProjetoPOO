@@ -21,9 +21,9 @@ public class Farmaceutico extends Funcionario {
 
     @Override
     public String toString() {
-        return "Farmaceutico{" +
+        return  "Farmaceutico{" +
                 "numeroCRF='" + numeroCRF + '\'' +
-                '}';
+                '}' + super.toString();
     }
 
     @Override

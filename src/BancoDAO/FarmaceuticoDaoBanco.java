@@ -24,7 +24,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
     public Set<Farmaceutico> getFarmaceutico() throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM farmaceutico fa, funcionario f WHERE fa = f"
+                    "SELECT * FROM farmaceutico fa, funcionario fu"
             );
             ResultSet resultSet = statement.executeQuery();
             Set<Farmaceutico> farmaceuticos = new HashSet<>();
@@ -95,11 +95,12 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
     public Farmaceutico buscarPorCRF(String CRF) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                    "SELECT * FROM funcionario fu, farmaceutico fa WHERE fa.matFuncionario = fu.matricula AND fa.numeroCRF = ?"
+                        "SELECT * " +
+                            "FROM funcionario fu, farmaceutico fa " +
+                            " WHERE fa.matFuncionario = fu.matricula AND fa.numeroCRF = ?"
             );
 
             statement.setString(1, CRF);
-
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()){
@@ -120,30 +121,32 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
     @Override
     public boolean atualizar(Farmaceutico farmaceutico) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
-            PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE FROM funcionario " +
-                            "SET cpf = ?, matricula = ?, senha = ?, salario = ?, sessao = ?, telefone = ?, endereco = ?" +
-                            "WHERE matricula = ?"
-            );
 
-            PreparedStatement statement2 = connection.prepareStatement(
-                    "UPDATE FROM farmaceutico " +
+            PreparedStatement statement1= connection.prepareStatement(
+                    "UPDATE farmaceutico " +
                             "SET numeroCRF = ?" +
                             "WHERE matfuncionario = ?"
             );
 
-            statement.setString(1, farmaceutico.getCpf());
-            statement.setString(2, farmaceutico.getMatricula());
-            statement.setString(3, farmaceutico.getSenha());
-            statement.setFloat(4, farmaceutico.getSalario());
-            statement.setString(5, String.valueOf(farmaceutico.getSessao()));
-            statement.setString(6, farmaceutico.getTelefone());
-            statement.setString(7, farmaceutico.getEndereco());
+            PreparedStatement statement2 = connection.prepareStatement(
+                    "UPDATE funcionario " +
+                            "SET cpf = ?, senha = ?, salario = ?, sessao = ?, telefone = ?, endereco = ?" +
+                            "WHERE matricula = ?"
+            );
 
-            statement2.setString(1, farmaceutico.getNumeroCRF());
-            statement2.setString(2, farmaceutico.getMatricula());
+            statement1.setString(1, farmaceutico.getNumeroCRF());
+            statement1.setString(2, farmaceutico.getMatricula());
 
-            return statement.executeUpdate() > 0 && statement2.executeUpdate() > 0;
+            statement2.setString(1, farmaceutico.getCpf());
+            statement2.setString(2, farmaceutico.getSenha());
+            statement2.setFloat(3, farmaceutico.getSalario());
+            statement2.setString(4, String.valueOf(farmaceutico.getSessao()));
+            statement2.setString(5, farmaceutico.getTelefone());
+            statement2.setString(6, farmaceutico.getEndereco());
+            statement2.setString(7, farmaceutico.getMatricula());
+
+            return statement1.executeUpdate() > 0 && statement2.executeUpdate() > 0;
+
         }
     }
 }

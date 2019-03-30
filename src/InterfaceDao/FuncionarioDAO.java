@@ -2,17 +2,18 @@ package InterfaceDao;
 
 import Model.Funcionario;
 
+import java.sql.SQLException;
 import java.util.Set;
 
 public interface FuncionarioDAO {
 
-    Set<Funcionario> getFuncionarios();
+    Set<Funcionario> getFuncionarios() throws SQLException, ClassNotFoundException;
 
-    boolean salvar(Funcionario funcionario) ;
+    boolean salvar(Funcionario funcionario) throws SQLException, ClassNotFoundException;
 
-    boolean deletar(Funcionario funcionario);
+    boolean deletar(Funcionario funcionario) throws SQLException, ClassNotFoundException;
 
-    Funcionario buscarPorMatricula(String matricula) ;
+    Funcionario buscarPorMatricula(String matricula) throws SQLException, ClassNotFoundException;
 
-    boolean atualizar(Funcionario funcionario) ;
+    boolean atualizar(Funcionario funcionario) throws SQLException, ClassNotFoundException;
 }

@@ -1,5 +1,11 @@
 package Main;
 
+import BancoDAO.FarmaceuticoDaoBanco;
+import BancoDAO.FarmaciaDaoBanco;
+import BancoDAO.FuncionarioDaoBanco;
+import Model.Farmaceutico;
+import Model.Farmacia;
+import Model.Funcionario;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -7,16 +13,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.sql.SQLException;
+import Enum.Sessao;
+
 
 public class TelaPrincipal extends Application {
 
-    public static void main(String[] args) {
-
+    public static void main(String[] args) throws SQLException, ClassNotFoundException {
         launch(args);
-    }
 
+    }
         @Override
         public void start(Stage primaryStage) throws IOException {
             Parent root = FXMLLoader.load(getClass().getResource("../View/telaPrincipal.fxml"));
