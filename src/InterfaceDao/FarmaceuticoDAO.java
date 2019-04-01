@@ -13,7 +13,7 @@ public interface FarmaceuticoDAO {
 
     boolean deletar(Farmaceutico farmaceutico) throws SQLException, ClassNotFoundException;
 
-    Farmaceutico buscarPorCRF(String CRF) throws SQLException, ClassNotFoundException;
+    Farmaceutico buscarPorMatricula(String matricula) throws SQLException, ClassNotFoundException;
 
     boolean atualizar(Farmaceutico farmaceutico) throws SQLException, ClassNotFoundException;
 }

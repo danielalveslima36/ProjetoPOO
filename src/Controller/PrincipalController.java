@@ -32,9 +32,6 @@ public class PrincipalController implements Initializable{
     private TextField usuario;
 
     @FXML
-    private ComboBox<TipoFuncionario> tipo;
-
-    @FXML
     private PasswordField senha;
 
     @FXML
@@ -55,8 +52,26 @@ public class PrincipalController implements Initializable{
 
     @FXML
     public void logar(ActionEvent event) {
-        if (usuario.getText().isEmpty() || senha.getText().isEmpty() || tipo.getItems().isEmpty()) {
+        if (usuario.getText().isEmpty() || senha.getText().isEmpty()) {
             alerta.Warning("ATENÇÃO", "PREENCHA TODOS OS CAMPOS");
+        }else{
+            try {
+                Farmaceutico farmaceutico = daoFarmaceutico.buscarPorMatricula(usuario.getText());
+                Funcionario funcionario  =  daoFuncionario.buscarPorMatricula(usuario.getText());
+                if (farmaceutico != null){
+                    if (farmaceutico.getSenha().compareTo(senha.getText()) == 0){
+                        TelaPrincipal.changeScreen("farmaceutico");
+                    }else alerta.Error("erro", "erro");
+                }else if (funcionario != null){
+                    if (funcionario.getSenha().compareTo(senha.getText()) == 0){
+                        alerta.Confirmation("deu crt", "FUNCIONARIO");
+                    }else alerta.Error("erro", "erro");
+                }else alerta.Error("erro", "erro");
+            } catch (SQLException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -70,7 +85,6 @@ public class PrincipalController implements Initializable{
         File file = new File("imagens/pill.png");
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
-        tipo.getItems().addAll(TipoFuncionario.values());
         usuario.setPromptText("Matricula");
         senha.setPromptText("Senha");
     }

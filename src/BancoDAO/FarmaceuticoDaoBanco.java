@@ -92,20 +92,20 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
     }
 
     @Override
-    public Farmaceutico buscarPorCRF(String CRF) throws SQLException, ClassNotFoundException {
+    public Farmaceutico buscarPorMatricula(String matricula) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
                         "SELECT * " +
                             "FROM funcionario fu, farmaceutico fa " +
-                            " WHERE fa.matFuncionario = fu.matricula AND fa.numeroCRF = ?"
+                            " WHERE fa.matFuncionario = fu.matricula AND fa.matfuncionario = ?"
             );
 
-            statement.setString(1, CRF);
+            statement.setString(1, matricula);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()){
                 String cpf = resultSet.getString("cpf");
-                String matricula = resultSet.getString("matFuncionario");
+                String matricula1 = resultSet.getString("matFuncionario");
                 String senha = resultSet.getString("senha");
                 Float salario = resultSet.getFloat("salario");
                 Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
