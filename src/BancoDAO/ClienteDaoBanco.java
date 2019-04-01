@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import Enum.Sexo;
 
 public class ClienteDaoBanco implements ClienteDAO {
 
@@ -30,7 +31,7 @@ public class ClienteDaoBanco implements ClienteDAO {
             while (resultSet.next()){
                 String cpf = resultSet.getString("cpf");
                 String nome = resultSet.getString("nome");
-                String sexo = resultSet.getString("sexo");
+                Sexo sexo = Sexo.valueOf(resultSet.getString("sexo"));
                 LocalDate nascimento = resultSet.getDate("nascimento").toLocalDate();
                 String endereco = resultSet.getString("endereco");
 
@@ -49,7 +50,7 @@ public class ClienteDaoBanco implements ClienteDAO {
 
             statement.setString(1, cliente.getNome());
             statement.setString(2, cliente.getCpf());
-            statement.setString(3, cliente.getSexo());
+            statement.setString(3, String.valueOf(cliente.getSexo()));
             statement.setDate(4, Date.valueOf(cliente.getNacimento()));
             statement.setString(5, cliente.getEndereco());
 
@@ -82,7 +83,7 @@ public class ClienteDaoBanco implements ClienteDAO {
             if (resultSet.next()){
                 String cpf1 = resultSet.getString("cpf");
                 String nome = resultSet.getString("nome");
-                String sexo = resultSet.getString("sexo");
+                Sexo sexo = Sexo.valueOf(resultSet.getString("sexo"));
                 LocalDate nascimento = resultSet.getDate("nascimento").toLocalDate();
                 String endereco = resultSet.getString("endereco");
 
@@ -98,7 +99,7 @@ public class ClienteDaoBanco implements ClienteDAO {
                     "UPDATE Cliente SET  nome = ?, sexo = ?, nascimento = ?, endereco = ? WHERE cpf = ?"
             );
             statement.setString(1, cliente.getNome());
-            statement.setString(2, cliente.getSexo());
+            statement.setString(2, String.valueOf(cliente.getSexo()));
             statement.setDate(3, Date.valueOf(cliente.getNacimento()));
             statement.setString(4, cliente.getEndereco());
             statement.setString(5, cliente.getCpf());

@@ -2,20 +2,31 @@ package Model;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import Enum.Sessao;
 
 public class Produto {
     private String decricao;
     private LocalDate validade;
     private String codigoDeBarras;
+    private Sessao sessao;
     private float precoUnitario;
     private String fabricante;
 
-    public Produto(String decricao, LocalDate validade, String codigoDeBarras, float precoUnitario, String fabricante) {
+    public Produto(String decricao, LocalDate validade, String codigoDeBarras, Sessao sessao, float precoUnitario, String fabricante) {
         this.decricao = decricao;
         this.validade = validade;
         this.codigoDeBarras = codigoDeBarras;
+        this.sessao = sessao;
         this.precoUnitario = precoUnitario;
         this.fabricante = fabricante;
+    }
+
+    public Sessao getSessao() {
+        return sessao;
+    }
+
+    public void setSessao(Sessao sessao) {
+        this.sessao = sessao;
     }
 
     public String getDecricao() {

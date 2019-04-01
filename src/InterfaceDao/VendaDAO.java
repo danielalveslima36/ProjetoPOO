@@ -1,16 +1,19 @@
 package InterfaceDao;
 
+import Model.Venda;
+
+import java.sql.SQLException;
 import java.util.Set;
 
 public interface VendaDAO {
 
-    Set<VendaDAO> getVenda();
+    Set<Venda> getVendas() throws SQLException, ClassNotFoundException;
 
-    boolean salvar(VendaDAO venda);
+    boolean salvar(Venda venda) throws SQLException, ClassNotFoundException;
 
-    boolean deletar(VendaDAO venda);
+    boolean deletar(Venda venda) throws SQLException, ClassNotFoundException;
 
-    VendaDAO buscarPorCodigo(int codVenda);
+    Venda buscarPorCodigo(int codVenda) throws SQLException, ClassNotFoundException;
 
-    boolean atualizar(VendaDAO venda);
+    boolean atualizar(Venda venda) throws SQLException, ClassNotFoundException;
 }

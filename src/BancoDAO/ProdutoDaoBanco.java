@@ -8,6 +8,7 @@ import java.sql.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
+import Enum.Sessao;
 
 public class ProdutoDaoBanco implements ProdutoDAO {
 
@@ -30,9 +31,10 @@ public class ProdutoDaoBanco implements ProdutoDAO {
                 String codProduto = resultSet.getString("codProduto");
                 String descricao = resultSet.getString("descricao");
                 String fabricante = resultSet.getString("fabricante");
+                Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
                 Float precoUnitario = resultSet.getFloat("precoUnitario");
                 LocalDate validade = resultSet.getDate("validade").toLocalDate();
-                produtos.add(new Produto(descricao, validade, codProduto, precoUnitario, fabricante));
+                produtos.add(new Produto(descricao, validade, codProduto, sessao, precoUnitario, fabricante));
             }
             return produtos;
         }
@@ -42,8 +44,8 @@ public class ProdutoDaoBanco implements ProdutoDAO {
     public boolean salvar(Produto produto) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO Produto(codProduto, descricao, fabricante, precoUnitario, validade) " +
-                            "VALUES(?, ?, ?, ?, ?)"
+                    "INSERT INTO Produto(codProduto, descricao, fabricante, precoUnitario, validade, sessao) " +
+                            "VALUES(?, ?, ?, ?, ?, ?)"
             );
 
             statement.setString(1, produto.getCodigoDeBarras());
@@ -51,6 +53,7 @@ public class ProdutoDaoBanco implements ProdutoDAO {
             statement.setString(3, produto.getFabricante());
             statement.setFloat(4, produto.getPrecoUnitario());
             statement.setDate(5, Date.valueOf(produto.getValidade()));
+            statement.setString(6, String.valueOf(produto.getSessao()));
 
             return statement.executeUpdate() > 0;
         }
@@ -82,9 +85,10 @@ public class ProdutoDaoBanco implements ProdutoDAO {
                 String codProduto = resultSet.getString("codProduto");
                 String descricao = resultSet.getString("descricao");
                 String fabricante = resultSet.getString("fabricante");
+                Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
                 Float precoUnitario = resultSet.getFloat("precoUnitario");
                 LocalDate validade = resultSet.getDate("validade").toLocalDate();
-                return new Produto(descricao, validade, codProduto, precoUnitario, fabricante);
+                return new Produto(descricao, validade, codProduto, sessao, precoUnitario, fabricante);
             } else return null;
         }
     }
@@ -92,19 +96,20 @@ public class ProdutoDaoBanco implements ProdutoDAO {
     @Override
     public boolean atualizar(Produto produto) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
-            PreparedStatement statement = connection.prepareStatement(
-                    "UPDATE produto" +
-                            "SET descricao = ?, fabricante = ?, precoUnitario = ?, validade = ?" +
-                            "WHERE codproduto = ?"
-            );
+          PreparedStatement statement = connection.prepareStatement(
+                  "UPDATE produto " +
+                          "SET descricao = ?, fabricante = ?, sessao = ?, precoUnitario = ?, validade = ?" +
+                          "WHERE codproduto = ?"
+          );
 
-            statement.setString(1, produto.getDecricao());
-            statement.setString(2, produto.getFabricante());
-            statement.setFloat(3, produto.getPrecoUnitario());
-            statement.setDate(4, Date.valueOf(produto.getValidade()));
-            statement.setString(5, produto.getCodigoDeBarras());
+          statement.setString(1, produto.getDecricao());
+          statement.setString(2, produto.getFabricante());
+          statement.setString(3, String.valueOf(produto.getSessao()));
+          statement.setFloat(4, produto.getPrecoUnitario());
+          statement.setDate(5, Date.valueOf(produto.getValidade()));
+          statement.setString(6, produto.getCodigoDeBarras());
 
-            return statement.executeUpdate() > 0;
+          return statement.executeUpdate() > 0;
         }
     }
 }

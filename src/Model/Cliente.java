@@ -3,21 +3,24 @@ package Model;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import Enum.Sexo;
+import Excecoes.DataNascimentoInvalidaException;
 
 public class Cliente {
     private String nome;
     private String cpf;
     private String endereco;
-    private String sexo;
+    private Sexo sexo;
     private LocalDate nacimento;
 
-    public Cliente(String nome, String cpf, String endereco, String sexo, LocalDate nacimento) {
+    public Cliente(String nome, String cpf, String endereco, Sexo sexo, LocalDate nacimento) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
         this.sexo = sexo;
         this.nacimento = nacimento;
     }
+
 
     public String getNome() {
         return nome;
@@ -43,11 +46,11 @@ public class Cliente {
         this.endereco = endereço;
     }
 
-    public String getSexo() {
+    public Sexo getSexo() {
         return sexo;
     }
 
-    public void setSexo(String sexo) {
+    public void setSexo(Sexo sexo) {
         this.sexo = sexo;
     }
 
@@ -55,7 +58,9 @@ public class Cliente {
         return nacimento;
     }
 
-    public void setNacimento(LocalDate nacimento) {
+    public void setNacimento(LocalDate nacimento) throws DataNascimentoInvalidaException {
+        if (nacimento.compareTo(LocalDate.now()) > 0) throw new DataNascimentoInvalidaException(
+                "Data de nascimento Invalida");
         this.nacimento = nacimento;
     }
 
