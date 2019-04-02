@@ -4,6 +4,15 @@ import java.time.LocalDate;
 import java.util.Objects;
 import Enum.Sessao;
 
+/**
+ * A classe  <b>Produto</b> modela a propriedade produto .
+ * Composto pelos seus atributos gerais.
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @version 1.0
+ * @since 01-04-19
+ */
+
 public class Produto {
     private String decricao;
     private LocalDate validade;

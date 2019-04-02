@@ -6,6 +6,16 @@ import java.util.Objects;
 
 import Enum.TipoVenda;
 
+/**
+ * A classe <b>Venda</b> modela a entidade venda no domínio da aplicação.
+ *
+ * @autora Maria Kelcilne
+ * @author Dsaniel Alves
+ * @version 1.0
+ * @since 01-04-19
+ *
+ */
+
 public class Venda {
     private int codVenda;
     private LocalDate data;

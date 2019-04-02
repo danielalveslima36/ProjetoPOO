@@ -6,6 +6,15 @@ import java.util.Objects;
 import Enum.Sexo;
 import Excecoes.DataNascimentoInvalidaException;
 
+/**
+ * A Classe <b>Cliente</b> tem como função guardar métodos e valores para o mesmo.
+ * @autora Maria Kelcilne
+ * @author Daniel Alves
+ * @version 1.0
+ * @since 01-04-19
+ */
+
+
 public class Cliente {
     private String nome;
     private String cpf;

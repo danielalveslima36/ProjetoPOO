@@ -2,6 +2,16 @@ package Model;
 
 import java.util.Objects;
 
+/**
+ * A classe <b>Farmácia</b> é composta por : <i>cnpj,razão social,endereço,telefone</i>.
+ • Ela controla atributos como :<i>Excluir farmácia, listar funcionários</i>, entre outros.
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @version 1.0
+ * @since 01-04-19
+ */
+
+
 public class Farmacia {
     private String cnpj;
     private String razaoSocial;

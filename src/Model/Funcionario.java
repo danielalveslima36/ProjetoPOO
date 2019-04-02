@@ -2,6 +2,16 @@ package Model;
 
 import java.util.Objects;
 import Enum.Sessao;
+
+/**
+ * A classe <b> Funcionário </b> tem a capacidade de armazenar informações sobre os seus atributos.
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @version 1.0
+ * @since -01-04-19
+ */
+
+
 public class Funcionario {
     private String cpf;
     private String matricula;
