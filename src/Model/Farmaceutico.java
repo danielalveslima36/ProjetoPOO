@@ -17,14 +17,26 @@ import Enum.Sessao;
 public class Farmaceutico extends Funcionario {
     private String numeroCRF;
 
+    /**
+     * Construtor com alguns dados iniciais.
+     * @param cpf,matricula,senha,salario
+     * @param sessao,telefone,endereco,numeroCRF
+     */
+
     public Farmaceutico(String cpf, String matricula, String senha, float salario, Sessao sessao, String telefone, String endereco, String numeroCRF) {
         super(cpf, matricula, senha, salario, sessao, telefone, endereco);
         this.numeroCRF = numeroCRF;
     }
 
+    /**
+     * Retora o numeroCRF do objeto Farmacêutico
+     * @return o nuemroCRF
+     */
+
     public String getNumeroCRF() {
         return numeroCRF;
     }
+
 
     public void setNumeroCRF(String numeroCRF) {
         this.numeroCRF = numeroCRF;

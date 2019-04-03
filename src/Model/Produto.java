@@ -21,6 +21,12 @@ public class Produto {
     private float precoUnitario;
     private String fabricante;
 
+    /**
+     * Contrutor com informações iniciais da classe Produto
+     * @param decricao,validade,codigoDeBarras
+     * @param sessao,precoUnitario,fabricante
+     */
+
     public Produto(String decricao, LocalDate validade, String codigoDeBarras, Sessao sessao, float precoUnitario, String fabricante) {
         this.decricao = decricao;
         this.validade = validade;
@@ -29,6 +35,12 @@ public class Produto {
         this.precoUnitario = precoUnitario;
         this.fabricante = fabricante;
     }
+
+    /**
+     * Gets e sets que tem retorno de informações do objeto Produto
+     * @return decricao,validade,codigoDeBarras
+     * @return sessao,precoUnitario,fabricante
+     */
 
     public Sessao getSessao() {
         return sessao;

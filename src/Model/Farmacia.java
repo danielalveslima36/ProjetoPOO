@@ -18,12 +18,22 @@ public class Farmacia {
     private String endereco;
     private String telefone;
 
+    /**
+     * Construtor da classe Farmácia com dados iniciais
+     * @param cnpj,raaoSocail,endereço,telefone
+     */
+
     public Farmacia(String cnpj, String razaoSocial, String endereco, String telefone) {
         this.cnpj = cnpj;
         this.razaoSocial = razaoSocial;
         this.endereco = endereco;
         this.telefone = telefone;
     }
+
+    /**
+     * Gets e sets com retorno do objeto Farmácia
+     * @return cnj,raaoSaocial,endereço,telefone
+     */
 
     public String getCnpj() {
         return cnpj;

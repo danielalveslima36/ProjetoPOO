@@ -21,6 +21,13 @@ public class Funcionario {
     private String telefone;
     private String endereco;
 
+    /**
+     * Construtor com os dados inciais da classe Funcionario
+     *
+     * @param cpf,matricula,senha
+     * @param salario,sessao,telefone,endereco
+     */
+
     public Funcionario(String cpf, String matricula, String senha, float salario, Sessao sessao, String telefone, String endereco) {
         this.cpf = cpf;
         this.matricula = matricula;
@@ -30,6 +37,12 @@ public class Funcionario {
         this.telefone = telefone;
         this.endereco = endereco;
     }
+
+
+    /**
+     * Gets e sets do objeto funcionaio
+     * @return cpf,matricula,senha,salario,telefone,endereço
+     */
 
     public String getCpf() {
         return cpf;

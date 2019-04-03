@@ -22,6 +22,12 @@ public class Cliente {
     private Sexo sexo;
     private LocalDate nacimento;
 
+    /**
+     * Construtor com dados iniciais
+     * @param nome,cpf
+     * @param endereco,sexo,nacimento
+     */
+
     public Cliente(String nome, String cpf, String endereco, Sexo sexo, LocalDate nacimento) {
         this.nome = nome;
         this.cpf = cpf;
@@ -30,6 +36,10 @@ public class Cliente {
         this.nacimento = nacimento;
     }
 
+    /**
+     * Gets e sets que tem retorno do objeto Cliente
+     * @return nome,cpf,endereço,sexo,nacimento
+     */
 
     public String getNome() {
         return nome;

@@ -10,7 +10,7 @@ import Enum.TipoVenda;
  * A classe <b>Venda</b> modela a entidade venda no domínio da aplicação.
  *
  * @autora Maria Kelcilne
- * @author Dsaniel Alves
+ * @author Daniel Alves
  * @version 1.0
  * @since 01-04-19
  *
@@ -25,6 +25,12 @@ public class Venda {
     private String funcionario;
     private String cliente;
 
+    /**
+     * Contrutor com dados iniciais da classe Venda
+     * @param codVenda,data,hora,total
+     * @param tipo,funcionario,cliente
+     */
+
     public Venda(int codVenda, LocalDate data, LocalTime hora, float total, TipoVenda tipo, String funcionario, String cliente) {
         this.codVenda = codVenda;
         this.data = data;
@@ -34,6 +40,12 @@ public class Venda {
         this.funcionario = funcionario;
         this.cliente = cliente;
     }
+
+    /**
+     * Gets e sets com retorno do objeto Venda
+     * @return codVenda,data,hora,total
+     * @return tipo,funcionario,cliente
+     */
 
     public String getFuncionario() {
         return funcionario;
