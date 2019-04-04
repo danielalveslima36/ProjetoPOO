@@ -1,5 +1,7 @@
 package Main;
 
+import BancoDAO.FarmaceuticoDaoBanco;
+import Model.Farmaceutico;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -9,9 +11,10 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.sql.SQLException;
+import Enum.Sessao;
 
 
-public class TelaPrincipal extends Application {
+public class TelaPrincipal extends Application  {
 
     private static Stage stage;
 
@@ -29,7 +32,7 @@ public class TelaPrincipal extends Application {
             Parent farmaceutico = FXMLLoader.load(getClass().getResource("../View/Farmaceutico.fxml"));
             farmaceuticoScene = new Scene(farmaceutico);
 
-            Parent cadastro = FXMLLoader.load(getClass().getResource("../View/telaCadastroFarmaceutico.fxml"));
+            Parent cadastro = FXMLLoader.load(getClass().getResource("../View/cadastroFarmaceutico.fxml"));
             cadastroScene = new Scene(cadastro);
 
             primaryStage.setTitle("Sistema de Controle Farmaceutico");
@@ -54,6 +57,6 @@ public class TelaPrincipal extends Application {
             }
         }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        launch(args);
+                launch(args);
     }
 }

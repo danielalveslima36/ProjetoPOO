@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 import Enum.Sessao;
@@ -32,6 +31,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
             while(resultSet.next()){
                 String cpf = resultSet.getString("cpf");
                 String matricula = resultSet.getString("matFuncionario");
+                String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
                 Float salario = resultSet.getFloat("salario");
                 Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
@@ -39,7 +39,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
                 String endereco = resultSet.getString("endereco");
                 String numeroCRF = resultSet.getString("numeroCRF");
 
-                farmaceuticos.add(new Farmaceutico(cpf, matricula, senha, salario, sessao, telefone, endereco, numeroCRF));
+                farmaceuticos.add(new Farmaceutico(cpf, matricula, nome, senha, salario, sessao, telefone, endereco, numeroCRF));
             }
             return farmaceuticos;
 
@@ -51,7 +51,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
 
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement1 = connection.prepareStatement(
-                    "INSERT INTO funcionario(matricula, cpf, senha, salario, endereco, sessao, telefone) VALUES(?, ?, ?, ?, ?, ?, ?);"
+                    "INSERT INTO funcionario(matricula, cpf, senha, salario, endereco, sessao, telefone, nome) VALUES(?, ?, ?, ?, ?, ?, ?, ?);"
             );
 
             PreparedStatement statement2 = connection.prepareStatement(
@@ -65,6 +65,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
             statement1.setString(5, farmaceutico.getEndereco());
             statement1.setString(6, String.valueOf(farmaceutico.getSessao()));
             statement1.setString(7, farmaceutico.getTelefone());
+            statement1.setString(8, farmaceutico.getNome());
 
             statement2.setString(1, farmaceutico.getMatricula());
             statement2.setString(2, farmaceutico.getNumeroCRF());
@@ -95,7 +96,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
     public Farmaceutico buscarPorMatricula(String matricula) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                        "SELECT * " +
+                    "SELECT * " +
                             "FROM funcionario fu, farmaceutico fa " +
                             " WHERE fa.matFuncionario = fu.matricula AND fa.matfuncionario = ?"
             );
@@ -106,6 +107,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
             if (resultSet.next()){
                 String cpf = resultSet.getString("cpf");
                 String matricula1 = resultSet.getString("matFuncionario");
+                String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
                 Float salario = resultSet.getFloat("salario");
                 Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
@@ -113,7 +115,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
                 String endereco = resultSet.getString("endereco");
                 String numeroCRF = resultSet.getString("numeroCRF");
 
-                return new Farmaceutico(cpf, matricula, senha, salario, sessao, telefone, endereco, numeroCRF);
+                return new Farmaceutico(cpf, matricula, nome, senha, salario, sessao, telefone, endereco, numeroCRF);
             } else return null;
         }
     }
@@ -130,7 +132,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
 
             PreparedStatement statement2 = connection.prepareStatement(
                     "UPDATE funcionario " +
-                            "SET cpf = ?, senha = ?, salario = ?, sessao = ?, telefone = ?, endereco = ?" +
+                            "SET cpf = ?, senha = ?, salario = ?, sessao = ?, telefone = ?, endereco = ?, nome = ?" +
                             "WHERE matricula = ?"
             );
 
@@ -143,7 +145,8 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
             statement2.setString(4, String.valueOf(farmaceutico.getSessao()));
             statement2.setString(5, farmaceutico.getTelefone());
             statement2.setString(6, farmaceutico.getEndereco());
-            statement2.setString(7, farmaceutico.getMatricula());
+            statement2.setString(7, farmaceutico.getNome());
+            statement2.setString(8, farmaceutico.getMatricula());
 
             return statement1.executeUpdate() > 0 && statement2.executeUpdate() > 0;
 

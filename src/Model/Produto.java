@@ -15,6 +15,7 @@ import Enum.Sessao;
 
 public class Produto {
     private String decricao;
+    private String nome;
     private LocalDate validade;
     private String codigoDeBarras;
     private Sessao sessao;
@@ -23,12 +24,13 @@ public class Produto {
 
     /**
      * Contrutor com informações iniciais da classe Produto
-     * @param decricao,validade,codigoDeBarras
-     * @param sessao,precoUnitario,fabricante
+     * @param decricao, nome, validade,codigoDeBarras
+     * @param sessao, nome, precoUnitario,fabricante
      */
 
-    public Produto(String decricao, LocalDate validade, String codigoDeBarras, Sessao sessao, float precoUnitario, String fabricante) {
+    public Produto(String decricao, String nome, LocalDate validade, String codigoDeBarras, Sessao sessao, float precoUnitario, String fabricante) {
         this.decricao = decricao;
+        this.nome = nome;
         this.validade = validade;
         this.codigoDeBarras = codigoDeBarras;
         this.sessao = sessao;
@@ -36,11 +38,21 @@ public class Produto {
         this.fabricante = fabricante;
     }
 
+
+
     /**
      * Gets e sets que tem retorno de informações do objeto Produto
-     * @return decricao,validade,codigoDeBarras
+     * @return decricao,nome,validade,codigoDeBarras
      * @return sessao,precoUnitario,fabricante
      */
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public Sessao getSessao() {
         return sessao;

@@ -24,17 +24,19 @@ public class ProdutoDaoBanco implements ProdutoDAO {
                     "SELECT * FROM produto"
             );
 
+
             ResultSet resultSet = statement.executeQuery();
             Set<Produto> produtos = new HashSet<>();
 
             while (resultSet.next()){
                 String codProduto = resultSet.getString("codProduto");
                 String descricao = resultSet.getString("descricao");
+                String nome = resultSet.getString("nome");
                 String fabricante = resultSet.getString("fabricante");
                 Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
                 Float precoUnitario = resultSet.getFloat("precoUnitario");
                 LocalDate validade = resultSet.getDate("validade").toLocalDate();
-                produtos.add(new Produto(descricao, validade, codProduto, sessao, precoUnitario, fabricante));
+                produtos.add(new Produto(descricao, nome, validade, codProduto, sessao, precoUnitario, fabricante));
             }
             return produtos;
         }
@@ -44,8 +46,8 @@ public class ProdutoDaoBanco implements ProdutoDAO {
     public boolean salvar(Produto produto) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO Produto(codProduto, descricao, fabricante, precoUnitario, validade, sessao) " +
-                            "VALUES(?, ?, ?, ?, ?, ?)"
+                    "INSERT INTO Produto(codProduto, descricao, fabricante, precoUnitario, validade, sessao, nome) " +
+                            "VALUES(?, ?, ?, ?, ?, ?, ?)"
             );
 
             statement.setString(1, produto.getCodigoDeBarras());
@@ -54,6 +56,7 @@ public class ProdutoDaoBanco implements ProdutoDAO {
             statement.setFloat(4, produto.getPrecoUnitario());
             statement.setDate(5, Date.valueOf(produto.getValidade()));
             statement.setString(6, String.valueOf(produto.getSessao()));
+            statement.setString(7, String.valueOf(produto.getNome()));
 
             return statement.executeUpdate() > 0;
         }
@@ -62,12 +65,12 @@ public class ProdutoDaoBanco implements ProdutoDAO {
     @Override
     public boolean deletar(Produto produto) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
-           PreparedStatement statement = connection.prepareStatement(
-                   "DELETE FROM produto WHERE codProduto = ?"
-           );
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM produto WHERE codProduto = ?"
+            );
 
-           statement.setString(1, produto.getCodigoDeBarras());
-           return statement.executeUpdate() > 0;
+            statement.setString(1, produto.getCodigoDeBarras());
+            return statement.executeUpdate() > 0;
         }
     }
 
@@ -84,11 +87,12 @@ public class ProdutoDaoBanco implements ProdutoDAO {
             if (resultSet.next()){
                 String codProduto = resultSet.getString("codProduto");
                 String descricao = resultSet.getString("descricao");
+                String nome = resultSet.getString("nome");
                 String fabricante = resultSet.getString("fabricante");
                 Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
                 Float precoUnitario = resultSet.getFloat("precoUnitario");
                 LocalDate validade = resultSet.getDate("validade").toLocalDate();
-                return new Produto(descricao, validade, codProduto, sessao, precoUnitario, fabricante);
+                return new Produto(descricao, nome, validade, codProduto, sessao, precoUnitario, fabricante);
             } else return null;
         }
     }
@@ -96,20 +100,21 @@ public class ProdutoDaoBanco implements ProdutoDAO {
     @Override
     public boolean atualizar(Produto produto) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
-          PreparedStatement statement = connection.prepareStatement(
-                  "UPDATE produto " +
-                          "SET descricao = ?, fabricante = ?, sessao = ?, precoUnitario = ?, validade = ?" +
-                          "WHERE codproduto = ?"
-          );
+            PreparedStatement statement = connection.prepareStatement(
+                    "UPDATE produto " +
+                            "SET descricao = ?, fabricante = ?, sessao = ?, precoUnitario = ?, validade = ?, nome = ?" +
+                            "WHERE codproduto = ?"
+            );
 
-          statement.setString(1, produto.getDecricao());
-          statement.setString(2, produto.getFabricante());
-          statement.setString(3, String.valueOf(produto.getSessao()));
-          statement.setFloat(4, produto.getPrecoUnitario());
-          statement.setDate(5, Date.valueOf(produto.getValidade()));
-          statement.setString(6, produto.getCodigoDeBarras());
+            statement.setString(1, produto.getDecricao());
+            statement.setString(2, produto.getFabricante());
+            statement.setString(3, String.valueOf(produto.getSessao()));
+            statement.setFloat(4, produto.getPrecoUnitario());
+            statement.setDate(5, Date.valueOf(produto.getValidade()));
+            statement.setString(6, produto.getNome());
+            statement.setString(7, produto.getCodigoDeBarras());
 
-          return statement.executeUpdate() > 0;
+            return statement.executeUpdate() > 0;
         }
     }
 }

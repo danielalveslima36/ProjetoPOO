@@ -23,8 +23,8 @@ public class Farmaceutico extends Funcionario {
      * @param sessao,telefone,endereco,numeroCRF
      */
 
-    public Farmaceutico(String cpf, String matricula, String senha, float salario, Sessao sessao, String telefone, String endereco, String numeroCRF) {
-        super(cpf, matricula, senha, salario, sessao, telefone, endereco);
+    public Farmaceutico(String cpf, String matricula, String nome, String senha, float salario, Sessao sessao, String telefone, String endereco, String numeroCRF) {
+        super(cpf, matricula, nome, senha, salario, sessao, telefone, endereco);
         this.numeroCRF = numeroCRF;
     }
 

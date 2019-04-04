@@ -1,11 +1,10 @@
 package Controller;
 
+import Main.TelaPrincipal;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -32,8 +31,39 @@ public class FarmaceuticoController implements Initializable{
 
     @FXML
     void cadastrarFarmacia(ActionEvent event) throws IOException {
-        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/farmaciaCadastro.fxml"));
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/cadastroFarmacia.fxml"));
         anchorPane.getChildren().setAll(a);
 
     }
+
+    @FXML
+    void cadastrarFuncionario(ActionEvent event) throws IOException {
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/cadastroFuncionario.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+
+    @FXML
+    void cadastrarProduto(ActionEvent event) throws IOException {
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/cadastroProduto.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+
+    @FXML
+    void consultarFarmacia(ActionEvent event) throws IOException {
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/consultaFarmacia.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+
+    @FXML
+    void consultarFuncionarios(ActionEvent event) throws IOException {
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/consultaFuncionario.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+
+    @FXML
+    void sair(ActionEvent event) {
+        TelaPrincipal.changeScreen("login");
+    }
+
+
 }

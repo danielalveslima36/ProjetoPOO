@@ -15,7 +15,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import util.TextFieldFormatter;
-import Enum.TipoFuncionario;
 
 import java.io.File;
 import java.net.URL;

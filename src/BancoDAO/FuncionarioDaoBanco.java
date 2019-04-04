@@ -22,19 +22,23 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
     public Set<Funcionario> getFuncionarios() throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement =  connection.prepareStatement(
-                    "SELECT * FROM Funcionario"
+                    "select *\n" +
+                            "from funcionario f\n" +
+                            "where f.matricula <>\n" +
+                            "    (SELECT matFuncionario FROM farmaceutico)"
             );
             ResultSet resultSet = statement.executeQuery();
             Set<Funcionario> funcionarios = new HashSet<>();
             while (resultSet.next()){
                 String cpf = resultSet.getString("cpf");
                 String matricula = resultSet.getString("matricula");
+                String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
                 Float salario = resultSet.getFloat("salario");
                 Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
                 String telefone = resultSet.getString("telefone");
                 String endereco = resultSet.getString("endereco");
-                funcionarios.add(new Funcionario(cpf, matricula, senha, salario, sessao, telefone, endereco));
+                funcionarios.add(new Funcionario(cpf, matricula, nome, senha, salario, sessao, telefone, endereco));
             }
             return funcionarios;
         }
@@ -44,7 +48,7 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
     public boolean salvar(Funcionario funcionario) throws SQLException, ClassNotFoundException {
         try (Connection connection = factory.getConnection()){
             PreparedStatement statement= connection.prepareStatement(
-                    "INSERT INTO funcionario(matricula, cpf, senha, salario, endereco, sessao, telefone) VALUES(?, ?, ?, ?, ?, ?, ?);"
+                    "INSERT INTO funcionario(matricula, cpf, senha, salario, endereco, sessao, telefone, nome) VALUES(?, ?, ?, ?, ?, ?, ?, ?);"
             );
 
             statement.setString(1, funcionario.getMatricula());
@@ -54,6 +58,7 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
             statement.setString(5, funcionario.getEndereco());
             statement.setString(6, String.valueOf(funcionario.getSessao()));
             statement.setString(7, funcionario.getTelefone());
+            statement.setString(8, funcionario.getNome());
 
             return statement.executeUpdate() > 0;
         }
@@ -86,12 +91,13 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
             if (resultSet.next()){
                 String cpf = resultSet.getString("cpf");
                 String matricula1 = resultSet.getString("matricula");
+                String nome = resultSet.getString("nome");
                 String senha = resultSet.getString("senha");
                 Float salario = resultSet.getFloat("salario");
                 Sessao sessao = Sessao.valueOf(resultSet.getString("sessao"));
                 String telefone = resultSet.getString("telefone");
                 String endereco = resultSet.getString("endereco");
-                return new Funcionario(cpf, matricula, senha, salario, sessao, telefone, endereco);
+                return new Funcionario(cpf, matricula, nome, senha, salario, sessao, telefone, endereco);
             }else return null;
         }
     }
@@ -101,7 +107,7 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
                     "UPDATE funcionario " +
-                            "SET cpf = ?, senha = ?, salario = ?, sessao = ?, telefone = ?, endereco = ?" +
+                            "SET cpf = ?, senha = ?, salario = ?, sessao = ?, telefone = ?, endereco = ?, nome = ?" +
                             "WHERE matricula = ?"
             );
 
@@ -111,7 +117,8 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
             statement.setString(4, String.valueOf(funcionario.getSessao()));
             statement.setString(5, funcionario.getTelefone());
             statement.setString(6, funcionario.getEndereco());
-            statement.setString(7, funcionario.getMatricula());
+            statement.setString(7, funcionario.getNome());
+            statement.setString(8, funcionario.getMatricula());
 
             return statement.executeUpdate() > 0;
         }

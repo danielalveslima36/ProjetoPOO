@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroFarmaceutico">
+   <children>
+      <AnchorPane prefHeight="50.0" prefWidth="640.0" style="-fx-background-color: #565656;">
+         <children>
+            <Label layoutX="14.0" layoutY="12.0" text="DrugStore" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="logo" fitHeight="50.0" fitWidth="48.0" layoutX="103.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </AnchorPane>
+      <ScrollPane layoutX="-1.0" layoutY="49.0" prefHeight="350.0" prefWidth="641.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="604.0" prefWidth="641.0">
+               <children>
+                  <Label layoutX="29.0" layoutY="14.0" text="Cadastro de Farmacêutico">
+                     <font>
+                        <Font name="Rockwell Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Line endX="418.0" endY="-8.0" layoutX="179.0" layoutY="57.0" opacity="0.37" startX="-154.0" startY="-8.0" />
+                  <Label layoutX="182.0" layoutY="74.0" text="CPF:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="136.0" layoutY="124.0" text="Matricula:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="163.0" layoutY="174.0" text="Nome:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="163.0" layoutY="224.0" text="Senha:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="153.0" layoutY="374.0" text="Salário:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="153.0" layoutY="424.0" text="Sessão:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="139.0" layoutY="324.0" text="Telefone:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="136.0" layoutY="274.0" text="Endereço:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="82.0" layoutY="474.0" text="Numero do CRF:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cpf" layoutX="220.0" layoutY="72.0" onKeyReleased="#tfCpf" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="75.0" />
+                  <TextField fx:id="matricula" layoutX="220.0" layoutY="108.0" onKeyReleased="#tfMatricula" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="125.0" />
+                  <TextField fx:id="nome" layoutX="220.0" layoutY="148.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="175.0" />
+                  <TextField fx:id="endereco" layoutX="220.0" layoutY="262.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="275.0" />
+                  <TextField fx:id="telefone" layoutX="220.0" layoutY="312.0" onKeyReleased="#tfTelefone" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="325.0" />
+                  <TextField fx:id="salario" layoutX="220.0" layoutY="362.0" onKeyReleased="#tfSalario" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="375.0" />
+                  <TextField fx:id="crf" layoutX="220.0" layoutY="462.0" onKeyReleased="#tfCrf" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="475.0" />
+                  <ComboBox fx:id="sessao" layoutX="220.0" layoutY="412.0" prefWidth="250.0" AnchorPane.topAnchor="425.0" />
+                  <PasswordField fx:id="senha" layoutX="220.0" layoutY="224.0" minWidth="250.0" AnchorPane.topAnchor="225.0" />
+                  <ButtonBar layoutX="406.0" layoutY="525.0" prefHeight="40.0" prefWidth="200.0">
+                     <buttons>
+                        <Button mnemonicParsing="false" onAction="#voltar" prefHeight="25.0" prefWidth="105.0" text="Voltar" />
+                        <Button mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+                     </buttons>
+                  </ButtonBar>
+               </children>
+            </AnchorPane>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

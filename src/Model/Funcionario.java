@@ -15,6 +15,7 @@ import Enum.Sessao;
 public class Funcionario {
     private String cpf;
     private String matricula;
+    private String nome;
     private String senha;
     private float salario;
     private Sessao sessao;
@@ -24,13 +25,14 @@ public class Funcionario {
     /**
      * Construtor com os dados inciais da classe Funcionario
      *
-     * @param cpf,matricula,senha
+     * @param cpf,matricula,nome,senha
      * @param salario,sessao,telefone,endereco
      */
 
-    public Funcionario(String cpf, String matricula, String senha, float salario, Sessao sessao, String telefone, String endereco) {
+    public Funcionario(String cpf, String matricula, String nome, String senha, float salario, Sessao sessao, String telefone, String endereco) {
         this.cpf = cpf;
         this.matricula = matricula;
+        this.nome = nome;
         this.senha = senha;
         this.salario = salario;
         this.sessao = sessao;
@@ -39,10 +41,20 @@ public class Funcionario {
     }
 
 
+
+
     /**
      * Gets e sets do objeto funcionaio
-     * @return cpf,matricula,senha,salario,telefone,endereço
+     * @return cpf,matricula,nome,senha,salario,telefone,endereço
      */
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
     public String getCpf() {
         return cpf;
@@ -105,6 +117,7 @@ public class Funcionario {
         return "Funcionario{" +
                 "cpf='" + cpf + '\'' +
                 ", matricula='" + matricula + '\'' +
+                ", nome='" + nome + '\'' +
                 ", senha='" + senha + '\'' +
                 ", salario=" + salario +
                 ", sessao=" + sessao +
