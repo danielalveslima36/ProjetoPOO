@@ -12,12 +12,28 @@ import java.util.HashSet;
 import java.util.Set;
 import Enum.Sessao;
 
+/**
+ * A classe <b>FarmaceuticoDaoBanco</b> representa o CRUD do objeto farmaceutico.
+ * @autora Maria Kelcilene
+ * @author Daneil Alves
+ * @vension 1.0
+ * @since 04-04-19
+ */
+
 public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
     private ConFactory factory;
 
     public FarmaceuticoDaoBanco(){
         factory = new ConFactory();
     }
+
+    /**
+     * Metodo para listar farmaceutico
+     * ou seja, expor todos os farmaceuticos cadastrados.
+     * @return Array com todos os farmaceuticos
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Set<Farmaceutico> getFarmaceutico() throws SQLException, ClassNotFoundException {
@@ -45,6 +61,16 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
 
         }
     }
+
+    /**
+     * Metodo salvar.
+     * Recebe um farmaceutico que queira se cadastrar.
+     * Os campos <i>Matricula,cpf,senha,salario,endereco,sessao,telefone,nome</i> devem ser informados pelo usuario.
+     * @param farmaceutico
+     * @return um novo farmaceutico
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public boolean salvar(Farmaceutico farmaceutico) throws SQLException, ClassNotFoundException {
@@ -74,6 +100,16 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
         }
     }
 
+    /**
+     * O metodo deletar recebe um farmaceutico que deseja ser deletado.
+     * Para isso, é necessario que o farmaceutico infome seu cpf.
+     * @param farmaceutico
+     * @return true caso o farmaceutico seja removido com sucesso
+     * @return false caso ocorra algum erro na busca do ususario para deletação.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean deletar(Farmaceutico farmaceutico) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -91,6 +127,18 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
             return statement1.executeUpdate() > 0 && statement2.executeUpdate() > 0;
         }
     }
+
+    /**
+     * O metodo Buscar
+     * Tem como objetivo localizar um farmaceutico através da sua matricula.
+     * caso ele encontre o usuario...ele recebe a ficha completa do farmaceutico
+     * <i>nome,endereço,sexo,matricula</i>, entre outros.
+     * @param matricula
+     * @return true caso a operação seja concluida com sucesso.
+     * @return false caso algum erro na busca.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Farmaceutico buscarPorMatricula(String matricula) throws SQLException, ClassNotFoundException {
@@ -119,6 +167,16 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
             } else return null;
         }
     }
+
+    /**
+     * Metodo atualizar.
+     * Essa função recebe um farmaceutico que deseja ser atualizado do sistema.
+     * onde, ele pode alterar suas informações pessoais.
+     * @param farmaceutico
+     * @return o usuario com suas informações atualizadas.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public boolean atualizar(Farmaceutico farmaceutico) throws SQLException, ClassNotFoundException {

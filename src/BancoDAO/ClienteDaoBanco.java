@@ -11,7 +11,7 @@ import java.util.Set;
 import Enum.Sexo;
 
 /**
- * A classe <b>ClienteDaoBanco</b> representa o CRUD do objeto.
+ * A classe <b>ClienteDaoBanco</b> representa o CRUD do objeto cliente.
  * @autora Maria Kelcilene
  * @author Daniel Alves
  * @vension 1.0
@@ -142,10 +142,10 @@ public class ClienteDaoBanco implements ClienteDAO {
 
     /**
      * Metodo atualizar.
-     * Essa função recebe um cliente que deseja ser deletado do sistema.
+     * Essa função recebe um cliente que deseja ser atualizado do sistema.
+     * onde ele pode altera suas informações pessoais.
      * @param cliente
-     * @return true caso a seja possivel remover o cliente.
-     * @return false caso seja impossivel remover o cliente.
+     * @return o cliente com suas alterações atualizadas.
      * @throws SQLException
      * @throws ClassNotFoundException
      */
