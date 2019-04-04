@@ -10,6 +10,14 @@ import java.util.HashSet;
 import java.util.Set;
 import Enum.Sexo;
 
+/**
+ * A classe <b>ClienteDaoBanco</b> representa o CRUD do objeto.
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @vension 1.0
+ * @since 04-04-19
+ */
+
 public class ClienteDaoBanco implements ClienteDAO {
 
     private ConFactory factory;
@@ -17,6 +25,14 @@ public class ClienteDaoBanco implements ClienteDAO {
     public ClienteDaoBanco(){
         factory = new ConFactory();
     }
+
+    /**
+     * Metodo para listar clientes
+     * ou seja, expor todos os clientes cadastrados.
+     * @return Array com todos os clientes
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Set<Cliente> getClientes() throws SQLException, ClassNotFoundException {
@@ -41,6 +57,16 @@ public class ClienteDaoBanco implements ClienteDAO {
         }
     }
 
+    /**
+     * Metodo salvar.
+     * Recebe um cliente que queira se cadastrar.
+     * Os campos <i>nome,cpf,sexo,nacimento,endereco</i> devem ser informados pelo usuario.
+     * @param cliente
+     * @return um  novo cliente
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean salvar(Cliente cliente) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -58,6 +84,16 @@ public class ClienteDaoBanco implements ClienteDAO {
         }
     }
 
+    /**
+     * O metodo deletar recebe um cliente que deseja ser deletado.
+     * Para isso, é necessario que o cliente infome seu cpf.
+     * @param cliente
+     * @return true coso a operação tenha sido realizada
+     * @return false caso haja algum erro na busca.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean deletar(Cliente cliente) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -69,6 +105,18 @@ public class ClienteDaoBanco implements ClienteDAO {
             return statement.executeUpdate() > 0;
         }
     }
+
+    /**
+     * O metodo Buscar
+     * Tem como objetivo localizar um usuario através do seu CPF.
+     * caso ele encontre o usuario...ele recebe a ficha completa do cliente
+     * <i>nome,endereço,sexo</i>, entre outros.
+     * @param cpf
+     * @return true caso o cliente seja encontrado
+     * @return false caso o cliente nao exista.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Cliente buscarPorCpf(String cpf) throws SQLException, ClassNotFoundException {
@@ -91,6 +139,16 @@ public class ClienteDaoBanco implements ClienteDAO {
             }else return null;
         }
     }
+
+    /**
+     * Metodo atualizar.
+     * Essa função recebe um cliente que deseja ser deletado do sistema.
+     * @param cliente
+     * @return true caso a seja possivel remover o cliente.
+     * @return false caso seja impossivel remover o cliente.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public boolean atualizar(Cliente cliente) throws SQLException, ClassNotFoundException {
