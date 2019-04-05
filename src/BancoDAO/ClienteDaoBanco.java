@@ -112,8 +112,7 @@ public class ClienteDaoBanco implements ClienteDAO {
      * caso ele encontre o usuario...ele recebe a ficha completa do cliente
      * <i>nome,endereço,sexo</i>, entre outros.
      * @param cpf
-     * @return true caso o cliente seja encontrado
-     * @return false caso o cliente nao exista.
+     * @return informações pessoais do cliente
      * @throws SQLException
      * @throws ClassNotFoundException
      */

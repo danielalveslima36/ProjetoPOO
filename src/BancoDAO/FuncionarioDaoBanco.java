@@ -11,12 +11,29 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * A classe <b>FuncionarioDaoBanco</b> representa o CRUD do objeto funcionario.
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @version 1.0
+ * @since 04-04-19
+ */
+
 public class FuncionarioDaoBanco implements FuncionarioDAO {
     private ConFactory factory;
+
 
     public FuncionarioDaoBanco(){
         factory = new ConFactory();
     }
+
+    /**
+     * Metodo para listar os funcionarios.
+     * ou seja, expor todos os funcionarios cadastrados.
+     * @return Array de funcionarios.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Set<Funcionario> getFuncionarios() throws SQLException, ClassNotFoundException {
@@ -44,6 +61,15 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
         }
     }
 
+    /**
+     * Recebe um funcionario que queira se cadastrar.
+     *Os campos <i>Matricula,cpf,senha,salario,endereco,sessao,telefone,nome</i> devem ser informados pelo usuario.
+     * @param funcionario
+     * @return um novo funcionario
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean salvar(Funcionario funcionario) throws SQLException, ClassNotFoundException {
         try (Connection connection = factory.getConnection()){
@@ -64,6 +90,16 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
         }
     }
 
+    /**
+     * O metodo deletar recebe um funcionario que deseja ser deletado.
+     * Para isso, é necessario que o funcionario infome sua matricula.
+     * @param funcionario
+     * @return true se for possivel deletar
+     * @return false caso não seja possivel deletar o funcionario
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean deletar(Funcionario funcionario) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -76,6 +112,17 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
             return statement.executeUpdate() > 0;
         }
     }
+
+    /**
+     * O metodo Buscar
+     * Tem como objetivo localizar um funcionario através da sua matricula.
+     * caso ele encontre, recebe a ficha completa do funcionario.
+     * <i>nome,endereço,senha,telefone</i>, entre outros.
+     * @param matricula
+     * @return informações pessoais do funcionario.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Funcionario buscarPorMatricula(String matricula) throws SQLException, ClassNotFoundException {
@@ -101,6 +148,17 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
             }else return null;
         }
     }
+
+    /**
+     * Metodo atualizar.
+     *  Essa função recebe um funcionario que deseja ser atualizado do sistema.
+     * onde, ele pode alterar suas informações pessoais.
+     * @param funcionario
+     * @return true caso a operação seja concluida com sucesso
+     * @return false caso não seja possivel atualizar o funcionario
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public boolean atualizar(Funcionario funcionario) throws SQLException, ClassNotFoundException {

@@ -10,6 +10,14 @@ import java.util.HashSet;
 import java.util.Set;
 import Enum.Sessao;
 
+/**
+ * A classe <b>ProdutoDaoBanco</b> tem como objetivo representar o CRUD do produto.
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @version 1.0
+ * @since 04-04-19
+ */
+
 public class ProdutoDaoBanco implements ProdutoDAO {
 
     private ConFactory factory;
@@ -17,6 +25,15 @@ public class ProdutoDaoBanco implements ProdutoDAO {
     public ProdutoDaoBanco(){
         factory = new ConFactory();
     }
+
+    /**
+     * Metodo para listar os produtos.
+     * ou seja, expor todos os prdutos cadastrados.
+     * @return Array com todos os produtos
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public Set<Produto> getProduto() throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -42,6 +59,15 @@ public class ProdutoDaoBanco implements ProdutoDAO {
         }
     }
 
+    /**
+     *  Recebe um produto que queira se cadastrar.
+     * Os campos <i>codigoDeBarras,fabricante,nome,descrição</i> devem ser informados pelo usuario.
+     * @param produto
+     * @return um novo produto
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean salvar(Produto produto) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -62,6 +88,16 @@ public class ProdutoDaoBanco implements ProdutoDAO {
         }
     }
 
+    /**
+     * O metodo deletar recebe um produto que deseja ser deletado.
+     * Para isso, é necessario que o funcionario infome o codigo de barras do produto.
+     * @param produto
+     * @return true caso a operação tenha dado certo
+     * @return false caso não seja possivel deletar o produto.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean deletar(Produto produto) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -74,6 +110,17 @@ public class ProdutoDaoBanco implements ProdutoDAO {
         }
     }
 
+
+    /**
+     * O metodo Buscar
+     * Tem como objetivo localizar um produto através do codigo de barras.
+     * caso ele encontre, recebe a ficha completa do produto.
+     * <i>nome,descrição,fabricante</i>, entre outros.
+     * @param codigoBarras
+     * @return informações do produto.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
     @Override
     public Produto buscarPorCodigo(String codigoBarras) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -96,6 +143,17 @@ public class ProdutoDaoBanco implements ProdutoDAO {
             } else return null;
         }
     }
+
+    /**
+     * Metodo atualizar.
+     * Essa função recebe um produto que deseja ser atualizado do sistema.
+     * onde, ele pode alterar suas informações pessoais.
+     * @param produto
+     * @return true se o objeto foi modificado
+     * @return false se for impossivel atualizar o produto
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public boolean atualizar(Produto produto) throws SQLException, ClassNotFoundException {

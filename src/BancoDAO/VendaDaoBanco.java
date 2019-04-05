@@ -12,6 +12,14 @@ import Enum.*;
 import Model.Venda;
 
 
+/**
+ * A classe <b>vendaDaoBanco</b> tem como função representar o CRUD do produto
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @version 1.0
+ * @since 04-04-19
+ */
+
 public class VendaDaoBanco implements VendaDAO {
 
     private ConFactory factory;
@@ -19,6 +27,14 @@ public class VendaDaoBanco implements VendaDAO {
     public VendaDaoBanco(){
         factory = new ConFactory();
     }
+
+    /**
+     * Metodo para listar os vendas.
+     * ou seja, expor todos os vendas cadastrados.
+     * @return Array de vendas
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Set<Venda> getVendas() throws SQLException, ClassNotFoundException {
@@ -44,6 +60,15 @@ public class VendaDaoBanco implements VendaDAO {
         }
     }
 
+    /**
+     *  Recebe uma venda que queira ser cadastrada.
+     * Os campos <i>codigo de Venda,data da venda,hora da venda</i> devem ser informados pelo usuario.
+     * @param venda
+     * @return uma venda
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean salvar(Venda venda) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -63,6 +88,16 @@ public class VendaDaoBanco implements VendaDAO {
         }
     }
 
+    /**
+     * O metodo deletar recebe uma venda que deseja ser deletado.
+     * Para isso, é necessario que o funcionario infome o codigo da venda.
+     * @param venda
+     * @return true se for possivel realizar a compra.
+     * @return false se for impossivel realizar a venda.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
+
     @Override
     public boolean deletar(Venda venda) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
@@ -74,6 +109,17 @@ public class VendaDaoBanco implements VendaDAO {
             return statement.executeUpdate() > 0;
         }
     }
+
+    /**
+     * O metodo Buscar
+     * Tem como objetivo localizar um produto através do codigo de venda.
+     * caso ele encontre, recebe a ficha completa da venda.
+     * <i>nome,data da venda,tipo da venda</i>, entre outros.
+     * @param codVenda
+     * @return informações sobre a venda.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public Venda buscarPorCodigo(int codVenda) throws SQLException, ClassNotFoundException {
@@ -96,6 +142,17 @@ public class VendaDaoBanco implements VendaDAO {
         }
 
     }
+
+    /**
+     * Metodo atualizar.
+     *  Essa função recebe uma venda que deseja ser atualizado do sistema.
+     * onde, ele pode alterar suas informações pessoais.
+     * @param venda
+     * @return true caso seja possivel atualizar a venda.
+     * @return false caso seja impossivel a atualização.
+     * @throws SQLException
+     * @throws ClassNotFoundException
+     */
 
     @Override
     public boolean atualizar(Venda venda) throws SQLException, ClassNotFoundException {

@@ -134,8 +134,7 @@ public class FarmaceuticoDaoBanco implements FarmaceuticoDAO {
      * caso ele encontre o usuario...ele recebe a ficha completa do farmaceutico
      * <i>nome,endereço,sexo,matricula</i>, entre outros.
      * @param matricula
-     * @return true caso a operação seja concluida com sucesso.
-     * @return false caso algum erro na busca.
+     * @return informações pessoais do farmaceutico
      * @throws SQLException
      * @throws ClassNotFoundException
      */

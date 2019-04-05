@@ -108,8 +108,7 @@ public class FarmaciaDaoBanco implements FarmaciaDAO {
      * caso ele encontre, recebe a ficha completa da farmacia
      * <i>nome,endereço,cnpj,razaoSocail</i>, entre outros.
      * @param cnpj
-     * @return true caso a busca seja concluida com sucesso
-     * @return false caso a busca tenha algum erro
+     * @return informações pessoais da farmacia.
      * @throws SQLException
      * @throws ClassNotFoundException
      */
