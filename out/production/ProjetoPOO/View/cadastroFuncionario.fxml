@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.shape.Line?>
+<?import util.NomeTextField?>
+<AnchorPane prefHeight="332.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroFuncionarioController">
+    <children>
+        <ScrollPane layoutX="-6.0" prefHeight="332.0" prefWidth="672.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-6.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="0.0">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="542.0" prefWidth="672.0">
+                    <children>
+                        <Label layoutX="26.0" layoutY="20.0" text="Cadastro de Funcionário">
+                            <font>
+                                <Font name="Rockwell Bold" size="20.0" />
+                            </font>
+                        </Label>
+                        <Line endX="438.0" layoutX="208.0" layoutY="59.0" opacity="0.29" startX="-182.0" />
+                        <Label layoutX="192.0" layoutY="88.0" text="CPF:" AnchorPane.topAnchor="90.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="149.0" layoutY="130.0" text="Matricula:" AnchorPane.topAnchor="145.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="173.0" layoutY="172.0" text="Nome:" AnchorPane.topAnchor="195.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="cpf" layoutX="231.0" layoutY="89.0" onKeyReleased="#tfCpf" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="90.0" />
+                        <TextField fx:id="matricula" layoutX="231.0" layoutY="131.0" onKeyReleased="#tfMatricula" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="145.0" />
+                        <NomeTextField fx:id="nome" layoutX="231.0" layoutY="173.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="195.0" />
+                        <Label layoutX="173.0" layoutY="207.0" text="Senha:" AnchorPane.topAnchor="245.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="156.0" layoutY="323.0" text="Telefone:" AnchorPane.topAnchor="345.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="149.0" layoutY="283.0" text="Endereço:" AnchorPane.topAnchor="295.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="telefone" layoutX="231.0" layoutY="324.0" onKeyReleased="#tfTelefone" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="345.0" />
+                        <TextField fx:id="endereco" layoutX="231.0" layoutY="284.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="295.0" />
+                        <PasswordField fx:id="senha" layoutX="231.0" layoutY="208.0" minWidth="250.0" AnchorPane.topAnchor="245.0" />
+                        <Label layoutX="171.0" layoutY="428.0" text="Salário:" AnchorPane.topAnchor="445.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="171.0" layoutY="363.0" text="Sessão:" AnchorPane.topAnchor="395.0">
+                            <font>
+                                <Font size="18.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="salario" layoutX="231.0" layoutY="429.0" onKeyReleased="#tfSalario" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="445.0" />
+                        <ComboBox fx:id="sessao" layoutX="231.0" layoutY="364.0" prefWidth="250.0" AnchorPane.topAnchor="395.0" />
+                        <ButtonBar layoutX="519.0" layoutY="488.0" prefHeight="40.0" prefWidth="128.0">
+                            <buttons>
+                                <Button minWidth="174.0" mnemonicParsing="false" onAction="#cadastrar" prefHeight="25.0" prefWidth="126.0" text="Cadastrar" />
+                            </buttons>
+                        </ButtonBar>
+                    </children>
+                </AnchorPane>
+            </content>
+        </ScrollPane>
+    </children>
+</AnchorPane>
