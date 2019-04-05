@@ -7,6 +7,15 @@ import javafx.scene.image.Image;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * A classe <b>Alertas</b> tem como função aletar .
+ * caso o usuario faça algo que prejudique o funcionamento, ele recebe uma mensagem na sua tela.
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @vension 1.0
+ * @since 04-04-19
+ */
+
 public class Alertas implements Initializable {
 
     public void Warning(String titulo, String cabecalho){
@@ -15,6 +24,12 @@ public class Alertas implements Initializable {
         alerta.setHeaderText(cabecalho);
         alerta.show();
     }
+
+    /**
+     * Função onde o usuario recebe uma mensagem de erro.
+     * @param titulo
+     * @param cabecalho
+     */
 
     public void Error(String titulo, String cabecalho){
         Alert alerta = new Alert(Alert.AlertType.ERROR);

@@ -13,6 +13,15 @@ import java.io.IOException;
 import java.sql.SQLException;
 import Enum.Sessao;
 
+/**
+ * A classe <b>TelaPrincipal</b>
+ * tem como principal caracteristica o gerenciamento de toda a aplicação desenvolvida
+ * Nela podemos gerenciar todas as telas da aplicação e modificarmos,caso necessario
+ * @autora Maria Kelcilene
+ * @author Daniel Alves
+ * @version 1.0
+ * @since 04-04-19
+ */
 
 public class TelaPrincipal extends Application  {
 
