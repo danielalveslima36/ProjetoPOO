@@ -7,13 +7,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-
+<?import util.NomeTextField?>
 
 <AnchorPane prefHeight="332.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.farmaciaCadastro">
    <children>
       <Label layoutX="21.0" layoutY="14.0" prefHeight="18.0" prefWidth="239.0" text="Cadastro de Farmácia">
          <font>
-            <Font name="Rockwell Bold" size="18.0" />
+            <Font name="Rockwell Bold" size="20.0" />
          </font>
       </Label>
       <Line endX="549.0" layoutX="94.0" layoutY="45.0" startX="-61.0" stroke="#b5b5b5" />
@@ -38,7 +38,7 @@
          </font>
       </Label>
       <TextField fx:id="cnpj" layoutX="231.0" layoutY="76.0" onKeyReleased="#tfCnpj" prefHeight="25.0" prefWidth="239.0" />
-      <TextField fx:id="nome" layoutX="231.0" layoutY="131.0" onKeyReleased="#tfNome" prefHeight="25.0" prefWidth="239.0" AnchorPane.topAnchor="131.0" />
+      <NomeTextField fx:id="nome" layoutX="231.0" layoutY="131.0" onKeyReleased="#tfNome" prefHeight="25.0" prefWidth="239.0" AnchorPane.topAnchor="131.0" />
       <TextField fx:id="endereco" layoutX="231.0" layoutY="191.0" prefHeight="25.0" prefWidth="239.0" />
       <TextField fx:id="telefone" layoutX="231.0" layoutY="251.0" onKeyReleased="#tfTelefone" prefHeight="25.0" prefWidth="239.0" />
       <ButtonBar layoutX="437.0" layoutY="288.0" prefHeight="30.0" prefWidth="200.0">

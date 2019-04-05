@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import util.NomeTextField?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CadastroFarmaceutico">
    <children>
@@ -81,7 +82,7 @@
                   </Label>
                   <TextField fx:id="cpf" layoutX="220.0" layoutY="72.0" onKeyReleased="#tfCpf" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="75.0" />
                   <TextField fx:id="matricula" layoutX="220.0" layoutY="108.0" onKeyReleased="#tfMatricula" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="125.0" />
-                  <TextField fx:id="nome" layoutX="220.0" layoutY="148.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="175.0" />
+                  <NomeTextField fx:id="nome" layoutX="220.0" layoutY="148.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="175.0" />
                   <TextField fx:id="endereco" layoutX="220.0" layoutY="262.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="275.0" />
                   <TextField fx:id="telefone" layoutX="220.0" layoutY="312.0" onKeyReleased="#tfTelefone" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="325.0" />
                   <TextField fx:id="salario" layoutX="220.0" layoutY="362.0" onKeyReleased="#tfSalario" prefHeight="25.0" prefWidth="250.0" AnchorPane.topAnchor="375.0" />

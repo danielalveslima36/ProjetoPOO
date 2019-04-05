@@ -24,8 +24,9 @@ public class FuncionarioDaoBanco implements FuncionarioDAO {
             PreparedStatement statement =  connection.prepareStatement(
                     "select *\n" +
                             "from funcionario f\n" +
-                            "where f.matricula <>\n" +
-                            "    (SELECT matFuncionario FROM farmaceutico)"
+                            "where f.matricula not in \n" +
+                            "\t\t(select matFuncionario\n" +
+                            "\t\tfrom farmaceutico)"
             );
             ResultSet resultSet = statement.executeQuery();
             Set<Funcionario> funcionarios = new HashSet<>();

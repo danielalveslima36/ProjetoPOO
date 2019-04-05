@@ -21,25 +21,50 @@ public class Cliente {
     private String endereco;
     private Sexo sexo;
     private LocalDate nacimento;
+    private String telefone;
 
     /**
      * Construtor com dados iniciais
-     * @param nome,cpf
+     * @param nome,cpf,telefone
      * @param endereco,sexo,nacimento
      */
 
-    public Cliente(String nome, String cpf, String endereco, Sexo sexo, LocalDate nacimento) {
+    public Cliente(String nome, String cpf, String telefone, String endereco, Sexo sexo, LocalDate nacimento) {
         this.nome = nome;
         this.cpf = cpf;
+        this.telefone = telefone;
         this.endereco = endereco;
         this.sexo = sexo;
         this.nacimento = nacimento;
     }
 
+
+
+
     /**
      * Gets e sets que tem retorno do objeto Cliente
      * @return nome,cpf,endereço,sexo,nacimento
      */
+
+    public Sexo getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(Sexo sexo) {
+        this.sexo = sexo;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
     public String getNome() {
         return nome;
@@ -61,25 +86,13 @@ public class Cliente {
         return endereco;
     }
 
-    public void setEndereço(String endereço) {
-        this.endereco = endereço;
-    }
-
-    public Sexo getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(Sexo sexo) {
-        this.sexo = sexo;
-    }
-
-    public LocalDate getNacimento() {
+    public LocalDate getNacimento() throws DataNascimentoInvalidaException {
+        if (nacimento.compareTo(LocalDate.now()) > 0) throw new DataNascimentoInvalidaException(
+                "Data de nascimento Invalida");
         return nacimento;
     }
 
-    public void setNacimento(LocalDate nacimento) throws DataNascimentoInvalidaException {
-        if (nacimento.compareTo(LocalDate.now()) > 0) throw new DataNascimentoInvalidaException(
-                "Data de nascimento Invalida");
+    public void setNacimento(LocalDate nacimento) {
         this.nacimento = nacimento;
     }
 
@@ -88,9 +101,10 @@ public class Cliente {
         return "Cliente{" +
                 "nome='" + nome + '\'' +
                 ", cpf='" + cpf + '\'' +
-                ", endereço='" + endereco + '\'' +
-                ", sexo='" + sexo + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", sexo=" + sexo +
                 ", nacimento=" + nacimento +
+                ", telefone='" + telefone + '\'' +
                 '}';
     }
 

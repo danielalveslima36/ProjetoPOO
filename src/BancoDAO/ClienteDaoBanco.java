@@ -1,6 +1,8 @@
 package BancoDAO;
 
+import Alerts.Alertas;
 import Banco.ConFactory;
+import Excecoes.DataNascimentoInvalidaException;
 import InterfaceDao.ClienteDAO;
 import Model.Cliente;
 
@@ -13,6 +15,7 @@ import Enum.Sexo;
 public class ClienteDaoBanco implements ClienteDAO {
 
     private ConFactory factory;
+    Alertas alerta = new Alertas();
 
     public ClienteDaoBanco(){
         factory = new ConFactory();
@@ -30,12 +33,13 @@ public class ClienteDaoBanco implements ClienteDAO {
 
             while (resultSet.next()){
                 String cpf = resultSet.getString("cpf");
+                String telefone = resultSet.getString("telefone");
                 String nome = resultSet.getString("nome");
                 Sexo sexo = Sexo.valueOf(resultSet.getString("sexo"));
                 LocalDate nascimento = resultSet.getDate("nascimento").toLocalDate();
                 String endereco = resultSet.getString("endereco");
 
-                clientes.add(new Cliente(nome, cpf, endereco, sexo, nascimento));
+                clientes.add(new Cliente(nome, cpf, telefone,endereco, sexo, nascimento));
             }
             return clientes;
         }
@@ -45,7 +49,7 @@ public class ClienteDaoBanco implements ClienteDAO {
     public boolean salvar(Cliente cliente) throws SQLException, ClassNotFoundException {
         try(Connection connection = factory.getConnection()){
             PreparedStatement statement = connection.prepareStatement(
-                    "INSERT INTO cliente(nome, cpf, sexo, nascimento, endereco) VALUES(?, ?, ?, ?, ?)"
+                    "INSERT INTO cliente(nome, cpf, sexo, nascimento, endereco, telefone) VALUES(?, ?, ?, ?, ?, ?)"
             );
 
             statement.setString(1, cliente.getNome());
@@ -53,8 +57,12 @@ public class ClienteDaoBanco implements ClienteDAO {
             statement.setString(3, String.valueOf(cliente.getSexo()));
             statement.setDate(4, Date.valueOf(cliente.getNacimento()));
             statement.setString(5, cliente.getEndereco());
+            statement.setString(6, cliente.getTelefone());
 
             return statement.executeUpdate() > 0;
+        } catch (DataNascimentoInvalidaException e) {
+            alerta.Error("Erro", "Data Invalida");
+            return false;
         }
     }
 
@@ -83,11 +91,12 @@ public class ClienteDaoBanco implements ClienteDAO {
             if (resultSet.next()){
                 String cpf1 = resultSet.getString("cpf");
                 String nome = resultSet.getString("nome");
+                String telefone = resultSet.getString("telefone");
                 Sexo sexo = Sexo.valueOf(resultSet.getString("sexo"));
                 LocalDate nascimento = resultSet.getDate("nascimento").toLocalDate();
                 String endereco = resultSet.getString("endereco");
 
-                return new Cliente(nome, cpf1, endereco, sexo, nascimento);
+                return new Cliente(nome, cpf1, telefone, endereco, sexo, nascimento);
             }else return null;
         }
     }
@@ -105,6 +114,9 @@ public class ClienteDaoBanco implements ClienteDAO {
             statement.setString(5, cliente.getCpf());
 
             return statement.executeUpdate() > 0;
+        } catch (DataNascimentoInvalidaException e) {
+            alerta.Error("Erro", "Data Invalida");
+            return false;
         }
     }
 }

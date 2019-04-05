@@ -63,7 +63,7 @@ public class PrincipalController implements Initializable{
                     }else alerta.Error("erro", "erro");
                 }else if (funcionario != null){
                     if (funcionario.getSenha().compareTo(senha.getText()) == 0){
-                        alerta.Confirmation("deu crt", "FUNCIONARIO");
+                        TelaPrincipal.changeScreen("funcionario");
                     }else alerta.Error("erro", "erro");
                 }else alerta.Error("erro", "erro");
             } catch (SQLException e) {

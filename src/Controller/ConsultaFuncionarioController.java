@@ -62,7 +62,7 @@ public class ConsultaFuncionarioController implements Initializable {
 
     private List<Funcionario> funcionarios;
 
-    private ObservableList<Funcionario> observableListFarmacias;
+    private ObservableList<Funcionario> observableListFuncionarios;
 
 
     @Override
@@ -86,8 +86,8 @@ public class ConsultaFuncionarioController implements Initializable {
 
         funcionarios = new ArrayList<>(daoFuncionario.getFuncionarios());
 
-        observableListFarmacias = FXCollections.observableArrayList(funcionarios);
-        tableView.setItems(observableListFarmacias);
+        observableListFuncionarios = FXCollections.observableArrayList(funcionarios);
+        tableView.setItems(observableListFuncionarios);
     }
 
     private void selecionarItemTableViewFuncionarios(Funcionario funcionario) {
@@ -118,7 +118,6 @@ public class ConsultaFuncionarioController implements Initializable {
         if (funcionario != null){
             boolean buttonConfirmarClicked = showFXMLAnchorPaneConsultaFuncionarioDialog(funcionario);
             if (buttonConfirmarClicked){
-                System.out.println(funcionario);
                 daoFuncionario.atualizar(funcionario);
                 carregarTableViewFuncionarios();
             }

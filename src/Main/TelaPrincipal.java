@@ -21,6 +21,7 @@ public class TelaPrincipal extends Application  {
     private static Scene loginScene;
     private static Scene cadastroScene;
     private static Scene farmaceuticoScene;
+    private static Scene funcionarioScene;
 
         @Override
         public void start(Stage primaryStage) throws IOException {
@@ -31,6 +32,10 @@ public class TelaPrincipal extends Application  {
             stage = primaryStage;
             Parent farmaceutico = FXMLLoader.load(getClass().getResource("../View/Farmaceutico.fxml"));
             farmaceuticoScene = new Scene(farmaceutico);
+
+            stage = primaryStage;
+            Parent funcionario = FXMLLoader.load(getClass().getResource("../View/Funcionario.fxml"));
+            funcionarioScene = new Scene(funcionario);
 
             Parent cadastro = FXMLLoader.load(getClass().getResource("../View/cadastroFarmaceutico.fxml"));
             cadastroScene = new Scene(cadastro);
@@ -54,6 +59,10 @@ public class TelaPrincipal extends Application  {
                     break;
                 case "farmaceutico":
                     stage.setScene(farmaceuticoScene);
+                    break;
+                case "funcionario":
+                    stage.setScene(funcionarioScene);
+                    break;
             }
         }
     public static void main(String[] args) throws SQLException, ClassNotFoundException {

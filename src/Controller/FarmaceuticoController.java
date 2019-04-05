@@ -49,6 +49,13 @@ public class FarmaceuticoController implements Initializable{
     }
 
     @FXML
+    void consultarProduto(ActionEvent event) throws IOException {
+        AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/consultaProduto.fxml"));
+        anchorPane.getChildren().setAll(a);
+    }
+
+
+    @FXML
     void consultarFarmacia(ActionEvent event) throws IOException {
         AnchorPane a = (AnchorPane) FXMLLoader.load(getClass().getResource("../View/consultaFarmacia.fxml"));
         anchorPane.getChildren().setAll(a);
